@@ -1,4 +1,3 @@
 package org.basdat.basdatchemicals.entitities;
 
-public class Company {
-}
+public record Company(int id, String companyName, int brandCount, int productCount) {}

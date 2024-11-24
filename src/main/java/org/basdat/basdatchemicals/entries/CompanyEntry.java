@@ -14,17 +14,19 @@ import org.basdat.basdatchemicals.popups.CompanyPopup;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class CompanyEntryController {
+public class CompanyEntry {
     private BasdatChemicalsDB dbConnection;
     private Company company;
 
     public TitledPane compEntry;
+    public Text companyId;
     public Text companyName;
     public Text brandCount;
     public Text productCount;
 
     public void insertData(Company company) {
         this.company = company;
+        this.companyId.setText(Integer.toString(company.id()));
         this.compEntry.setText(company.companyName() + " (Company)");
         this.companyName.setText(company.companyName());
         this.brandCount.setText(Integer.toString(company.brandCount()));

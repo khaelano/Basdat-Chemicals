@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.basdat.basdatchemicals.popups.ChemicalPopupController">
+<AnchorPane prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.basdat.basdatchemicals.popups.ChemicalPopup">
    <children>
       <VBox layoutX="141.0" layoutY="56.0" prefHeight="200.0" prefWidth="100.0" spacing="8.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -15,8 +15,8 @@
             </Text>
             <GridPane vgap="8.0" VBox.vgrow="NEVER">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="93.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="489.0" minWidth="10.0" prefWidth="489.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="99.0" prefWidth="99.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="674.0" minWidth="10.0" prefWidth="674.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints vgrow="NEVER" />
@@ -36,15 +36,19 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Text>
-            <TableView fx:id="productsTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-              <columns>
-                <TableColumn fx:id="prodNameColumn" prefWidth="340.0" text="Product Name" />
-                  <TableColumn fx:id="brandNameColumn" minWidth="0.0" prefWidth="160.0" text="Brand Name" />
-                <TableColumn fx:id="reportDateColumn" minWidth="0.0" prefWidth="140.0" text="Initial Report Date" />
-                  <TableColumn fx:id="updateDateColumn" prefWidth="140.0" text="Report Update Date" />
-              </columns>
-            </TableView>
-            <Pagination fx:id="tablePaginator" pageCount="12" prefWidth="200.0" VBox.vgrow="NEVER" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <TableView fx:id="productsTable" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="780.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn fx:id="prodNameColumn" prefWidth="340.0" text="Product Name" />
+                        <TableColumn fx:id="brandNameColumn" minWidth="0.0" prefWidth="160.0" text="Brand Name" />
+                      <TableColumn fx:id="reportDateColumn" minWidth="0.0" prefWidth="140.0" text="Initial Report Date" />
+                        <TableColumn fx:id="updateDateColumn" prefWidth="140.0" text="Report Update Date" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <Pagination fx:id="tablePagination" cacheShape="false" centerShape="false" pageCount="12" prefHeight="0.0" prefWidth="780.0" VBox.vgrow="NEVER" />
          </children>
       </VBox>
    </children>

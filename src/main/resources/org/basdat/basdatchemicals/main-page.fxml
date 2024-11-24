@@ -5,17 +5,26 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="16.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="16.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.basdat.basdatchemicals.MainPage">
    <children>
       <VBox spacing="16.0" HBox.hgrow="ALWAYS">
          <children>
-            <TextField />
-            <ListView prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+            <HBox prefWidth="297.0" spacing="8.0" VBox.vgrow="NEVER">
+               <children>
+                  <TextField fx:id="searchBar" promptText="Search by name or ID" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="searchButton" mnemonicParsing="false" onAction="#search" text="Search" />
+               </children>
+            </HBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Pagination fx:id="searchResultPagination" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
          </children>
       </VBox>
       <VBox fillWidth="false" spacing="8.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Filter &amp; sort">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Filter">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -33,25 +42,19 @@
                       <RowConstraints vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Product" />
-                        <CheckBox mnemonicParsing="false" GridPane.columnIndex="1" />
-                        <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product" GridPane.rowIndex="1" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Chemical" />
+                        <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Company" GridPane.rowIndex="1" />
                         <Text layoutX="10.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product" GridPane.rowIndex="2" />
-                        <CheckBox layoutX="216.0" layoutY="16.0" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <CheckBox layoutX="216.0" layoutY="46.0" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <CheckBox fx:id="chemicalSearchToggle" mnemonicParsing="false" onAction="#search" selected="true" GridPane.columnIndex="1" />
+                        <CheckBox fx:id="companySearchToggle" layoutX="216.0" layoutY="16.0" mnemonicParsing="false" onAction="#search" selected="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <CheckBox fx:id="productSearchToggle" layoutX="216.0" layoutY="46.0" mnemonicParsing="false" onAction="#search" selected="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                </children>
             </HBox>
             <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="238.0" VBox.vgrow="NEVER">
                <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" HBox.hgrow="ALWAYS">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sort by" />
-                        <ChoiceBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="284.0" />
-                        <ChoiceBox layoutX="10.0" layoutY="28.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="332.0" />
-                     </children>
-                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
          </children>

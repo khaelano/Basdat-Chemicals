@@ -15,7 +15,7 @@ import org.basdat.basdatchemicals.popups.ChemicalPopup;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class ChemicalEntryController {
+public class ChemicalEntry {
     private BasdatChemicalsDB dbConnection;
     private Chemical chemical;
 

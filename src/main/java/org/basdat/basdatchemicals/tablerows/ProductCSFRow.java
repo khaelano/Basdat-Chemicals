@@ -1,9 +1,9 @@
 package org.basdat.basdatchemicals.tablerows;
 
-public class ProductCSF {
+public class ProductCSFRow {
     String csfDescription;
 
-    public ProductCSF(String csfDescription) {
+    public ProductCSFRow(String csfDescription) {
         this.csfDescription = csfDescription;
     }
 

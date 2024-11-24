@@ -12,28 +12,29 @@ import javafx.scene.text.Text;
 import org.basdat.basdatchemicals.BasdatChemicalsDB;
 import org.basdat.basdatchemicals.PagedListResult;
 import org.basdat.basdatchemicals.entitities.Company;
-import org.basdat.basdatchemicals.tablerows.CompanyPopupRow;
+import org.basdat.basdatchemicals.tablerows.ProductRow;
 
 import java.sql.SQLException;
 import java.util.Date;
 
 public class CompanyPopup {
     private BasdatChemicalsDB dbConnection;
-    private TableView<CompanyPopupRow> productTable;
+    private TableView<ProductRow> productTable;
 
-    public Text compName;
+    public Text companyId;
+    public Text companyName;
     public Text brandCount;
-    public Text prodCount;
-    public Pagination compProductTablePagination;
+    public Text productCount;
+    public Pagination productChemicalsTablePagination;
 
     @FXML
     public void initialize() {
         productTable = new TableView<>();
         productTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
-        TableColumn<CompanyPopupRow, String> productNameColumn = new TableColumn<>("Product Name");
-        TableColumn<CompanyPopupRow, String> brandNameColumn = new TableColumn<>("Brand Name");
-        TableColumn<CompanyPopupRow, Date> reportDateColumn = new TableColumn<>("Report Date");
-        TableColumn<CompanyPopupRow, Date> updateDateColumn = new TableColumn<>("Update Date");
+        TableColumn<ProductRow, String> productNameColumn = new TableColumn<>("Product Name");
+        TableColumn<ProductRow, String> brandNameColumn = new TableColumn<>("Brand Name");
+        TableColumn<ProductRow, Date> reportDateColumn = new TableColumn<>("Report Date");
+        TableColumn<ProductRow, Date> updateDateColumn = new TableColumn<>("Update Date");
 
         productNameColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
         productNameColumn.prefWidthProperty().bind(productTable.widthProperty().multiply(0.4));
@@ -51,13 +52,13 @@ public class CompanyPopup {
     }
 
     public void insertData(Company company) throws SQLException {
-        compName.setText(company.companyName());
+        companyName.setText(company.companyName());
         brandCount.setText(Integer.toString(company.brandCount()));
-        prodCount.setText(Integer.toString(company.productCount()));
-        PagedListResult<CompanyPopupRow> queryResult = dbConnection.fetchCompanyProducts(company.id(), 0);
+        productCount.setText(Integer.toString(company.productCount()));
+        PagedListResult<ProductRow> queryResult = dbConnection.fetchCompanyProducts(company.id(), 0);
 
-        compProductTablePagination.setPageCount(queryResult.maxPage());
-        compProductTablePagination.setPageFactory(pageIndex -> {
+        productChemicalsTablePagination.setPageCount(queryResult.maxPage());
+        productChemicalsTablePagination.setPageFactory(pageIndex -> {
             try {
                 return createTable(company.id(), pageIndex);
             } catch (SQLException e) {
@@ -67,8 +68,8 @@ public class CompanyPopup {
     }
 
     public BorderPane createTable(int companyId, int page) throws SQLException {
-        PagedListResult<CompanyPopupRow> queryResult = dbConnection.fetchCompanyProducts(companyId, page);
-        ObservableList<CompanyPopupRow> tableRows = FXCollections.observableArrayList(queryResult.content());
+        PagedListResult<ProductRow> queryResult = dbConnection.fetchCompanyProducts(companyId, page);
+        ObservableList<ProductRow> tableRows = FXCollections.observableArrayList(queryResult.content());
         productTable.setItems(tableRows);
         BorderPane borderPane = new BorderPane();
         borderPane.setCenter(productTable);

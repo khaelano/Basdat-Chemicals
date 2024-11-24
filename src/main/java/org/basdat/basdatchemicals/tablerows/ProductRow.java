@@ -2,13 +2,13 @@ package org.basdat.basdatchemicals.tablerows;
 
 import java.util.Date;
 
-public class CompanyProduct {
+public class ProductRow {
     String productName;
     String brandName;
     Date reportDate;
     Date updateDate;
 
-    public CompanyProduct(String productName, String brandName, Date reportDate, Date updateDate) {
+    public ProductRow(String productName, String brandName, Date reportDate, Date updateDate) {
         this.productName = productName;
         this.brandName = brandName;
         this.reportDate = reportDate;

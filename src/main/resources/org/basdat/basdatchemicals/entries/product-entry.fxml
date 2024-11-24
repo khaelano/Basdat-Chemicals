@@ -5,47 +5,49 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" text=" Dihydrogen Monoxide (Product)" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
-  <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="200.0">
-         <children>
-            <HBox prefHeight="100.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<HBox xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.basdat.basdatchemicals.entries.ProductEntry">
+   <children>
+      <TitledPane fx:id="prodEntry" animated="false" expanded="false" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" text=" Dihydrogen Monoxide (Product)" HBox.hgrow="ALWAYS">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="200.0">
                <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="16.0" HBox.hgrow="ALWAYS">
+                  <HBox prefHeight="100.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <GridPane vgap="16.0" VBox.vgrow="NEVER">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="93.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="489.0" minWidth="10.0" prefWidth="489.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Brand" GridPane.rowIndex="1" />
-                              <Text layoutX="10.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reported at" GridPane.rowIndex="3" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Updated at" GridPane.rowIndex="4" />
-                              <Text fx:id="prodName" layoutX="10.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dihydrogen Monoxide" GridPane.columnIndex="1" />
-                              <Text fx:id="prodBrand" layoutX="103.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Anjaymabar" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Text fx:id="prodReportDate" layoutX="10.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20 June 2024" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Text fx:id="prodUpdateDate" layoutX="10.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20 June 2024" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Company" GridPane.rowIndex="2" />
-                              <Text fx:id="prodCompany" strokeType="OUTSIDE" strokeWidth="0.0" text="Unilever" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <GridPane hgap="8.0" vgap="8.0" VBox.vgrow="NEVER">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="120.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="489.0" minWidth="10.0" prefWidth="469.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="NEVER" />
+                                  <RowConstraints vgrow="NEVER" />
+                                  <RowConstraints vgrow="NEVER" />
+                                    <RowConstraints vgrow="NEVER" />
+                                </rowConstraints>
+                                 <children>
+                                    <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product name" GridPane.rowIndex="1" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Brand name" GridPane.rowIndex="2" />
+                                    <Text fx:id="productName" layoutX="10.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dihydrogen Monoxide" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Text fx:id="brandName" layoutX="103.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Anjaymabar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Company name" GridPane.rowIndex="3" />
+                                    <Text fx:id="companyName" strokeType="OUTSIDE" strokeWidth="0.0" text="Unilever" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CDPH ID" />
+                                    <Text fx:id="cdphId" strokeType="OUTSIDE" strokeWidth="0.0" text="100" GridPane.columnIndex="1" />
+                                 </children>
+                              </GridPane>
+                              <Button fx:id="prodCompositionButton" mnemonicParsing="false" onAction="#getMoreInformation" text="More information" />
                            </children>
-                        </GridPane>
-                        <Button fx:id="prodCompositionButton" mnemonicParsing="false" text="See this product composition" />
+                        </VBox>
                      </children>
-                  </VBox>
+                  </HBox>
                </children>
-            </HBox>
-         </children>
-         <padding>
-            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-         </padding></AnchorPane>
-  </content>
-</TitledPane>
+               <padding>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </padding>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+   </children>
+</HBox>

@@ -15,30 +15,28 @@ import org.basdat.basdatchemicals.popups.ProductPopup;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class ProductEntryController {
+public class ProductEntry {
     private BasdatChemicalsDB dbConnection;
     private Product product;
 
-    public Text prodName;
-    public Text prodBrand;
-    public Text prodReportDate;
-    public Text prodUpdateDate;
-    public Text prodCompany;
+    public Text cdphId;
+    public Text productName;
+    public Text brandName;
+    public Text companyName;
     public TitledPane prodEntry;
     public Button prodCompositionButton;
 
     public void insertData(Product product) {
         this.product = product;
+        this.cdphId.setText(Integer.toString(product.cdphId()));
         this.prodEntry.setText(product.productName() + " (Product)");
-        this.prodName.setText(product.productName());
-        this.prodBrand.setText(product.brandName());
-        this.prodCompany.setText(product.companyName());
-        this.prodReportDate.setText(product.reportedAt().toString());
-        this.prodUpdateDate.setText(product.updatedAt().toString());
+        this.productName.setText(product.productName());
+        this.brandName.setText(product.brandName());
+        this.companyName.setText(product.companyName());
     }
 
     @FXML
-    protected void getProductChemicals() throws IOException, SQLException {
+    protected void getMoreInformation() throws IOException, SQLException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/basdat/basdatchemicals/popups/product-popup.fxml"));
         AnchorPane popupWidget = loader.load();
         ProductPopup controller = loader.getController();

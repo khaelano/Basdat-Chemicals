@@ -12,13 +12,12 @@ import javafx.scene.text.Text;
 import org.basdat.basdatchemicals.BasdatChemicalsDB;
 import org.basdat.basdatchemicals.PagedListResult;
 import org.basdat.basdatchemicals.entitities.Chemical;
-import org.basdat.basdatchemicals.tablerows.ChemicalPopupRow;
+import org.basdat.basdatchemicals.tablerows.ProductRow;
 
-import javax.lang.model.AnnotatedConstruct;
 import java.sql.SQLException;
 import java.util.Date;
 
-public class ChemicalPopupController {
+public class ChemicalPopup {
     private BasdatChemicalsDB dbConnection;
     private String casNumber;
     private int currPage = 0;
@@ -27,26 +26,26 @@ public class ChemicalPopupController {
     public Text chemName;
     public Text chemCasNum;
     public Pagination tablePagination;
-    public TableView<ChemicalPopupRow> productsTable;
-    public TableColumn<ChemicalPopupRow, String> prodNameColumn;
-    public TableColumn<ChemicalPopupRow, String> brandNameColumn;
-    public TableColumn<ChemicalPopupRow, Date> reportDateColumn;
-    public TableColumn<ChemicalPopupRow, Date> updateDateColumn;
+    public TableView<ProductRow> productsTable;
+    public TableColumn<ProductRow, String> prodNameColumn;
+    public TableColumn<ProductRow, String> brandNameColumn;
+    public TableColumn<ProductRow, Date> reportDateColumn;
+    public TableColumn<ProductRow, Date> updateDateColumn;
 
     @FXML
     public void initialize() {
-        prodNameColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
-        brandNameColumn.setCellValueFactory(new PropertyValueFactory<>("brandName"));
-        reportDateColumn.setCellValueFactory(new PropertyValueFactory<>("reportDate"));
-        updateDateColumn.setCellValueFactory(new PropertyValueFactory<>("updateDate"));
+        prodNameColumn.setCellValueFactory(new PropertyValueFactory<ProductRow, String>("productName"));
+        brandNameColumn.setCellValueFactory(new PropertyValueFactory<ProductRow, String>("brandName"));
+        reportDateColumn.setCellValueFactory(new PropertyValueFactory<ProductRow, Date>("reportDate"));
+        updateDateColumn.setCellValueFactory(new PropertyValueFactory<ProductRow, Date>("updateDate"));
     }
 
     public void insertData(Chemical chemical) throws SQLException {
-        this.chemName.setText(chemical.name());
+        this.chemName.setText(chemical.chemicalName());
         this.chemCasNum.setText(chemical.casNumber());
         this.casNumber = chemical.casNumber();
 
-        PagedListResult<ChemicalPopupRow> queryResult = dbConnection.fetchProducts(casNumber, 0);
+        PagedListResult<ProductRow> queryResult = dbConnection.fetchChemicalProducts(casNumber, 0);
         this.tablePagination.setPageCount(queryResult.maxPage());
         this.tablePagination.setPageFactory(pageIndex -> {
             try {
@@ -58,8 +57,8 @@ public class ChemicalPopupController {
     }
 
     public AnchorPane setTable(String casNumber, int page) throws SQLException {
-        PagedListResult<ChemicalPopupRow> queryResult = dbConnection.fetchProducts(casNumber, page);
-        ObservableList<ChemicalPopupRow> list = FXCollections.observableArrayList(queryResult.content());
+        PagedListResult<ProductRow> queryResult = dbConnection.fetchChemicalProducts(casNumber, page);
+        ObservableList<ProductRow> list = FXCollections.observableArrayList(queryResult.content());
         productsTable.setItems(list);
 //        productsTable.refresh();
         return new AnchorPane(productsTable);
